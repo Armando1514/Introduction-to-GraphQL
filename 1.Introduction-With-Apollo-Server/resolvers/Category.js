@@ -2,7 +2,7 @@
 exports.Category = {
     products: (parent, args, context) => {
         const categoryId = parent.id;
-        const { products } = context;
+        const { products } = context.db;
         let { filter } = args;
         let filterProducts = products.filter(product => product.categoryId === categoryId);        ;
         if(filter){

@@ -2,8 +2,8 @@
 exports.Query = {
     products: (parent, args, context) => {
         let { filter } = args;
-        let filterProducts = context.products;
-        let reviews = context.reviews;
+        let filterProducts = context.db.products;
+        let reviews = context.db.reviews;
 
         if(filter){
             const { onSale, avgRating } = filter;
@@ -32,13 +32,13 @@ exports.Query = {
     },
     product: (parent, args, context) => {
         const { id: productId } = args;
-        const { products } = context;
+        const { products } = context.db;
         return products.find(product => product.id == productId);
     },
-    categories: (parent, args, context) => context.categories,
+    categories: (parent, args, context) => context.db.categories,
     category: (parent, args, context) => {
         const { id: categoryId } = args;
-        const { categories } = context;
+        const { categories } = context.db;
         return categories.find(category => category.id == categoryId);
     }
 }
