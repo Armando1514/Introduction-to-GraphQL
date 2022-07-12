@@ -15,7 +15,6 @@ export const Query = {
 		{ prisma, userInfo }: Context
 	) => {
 		const isMyProfile = Number(userId) === userInfo?.userId;
-
 		const profile = await prisma.profile.findUnique({
 			where: {
 				userId: Number(userId),
